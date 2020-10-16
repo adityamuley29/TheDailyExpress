@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block detail %}
+
+
+<div class="container"
+  style="margin-top: 20px; border:2px soild white;border-radius:6px;box-shadow: 0px 0px 9px 0px #8888">
+  <h1 style="text-align: center;font-size:2rem;margin:3px">Top sports headlines from India</h1>
+  <hr>
+  <div class="row" style="overflow-y: hidden;">
+
+    {% for i in s_api.articles %}
+    <div class="col-sm">
+      <div class="card" style="width: 18rem;margin:20px;    box-shadow: 1px 1px 20px 2px #8888;">
+        <img src="{{i.urlToImage}}" class="card-img-top" alt="{{i.source.name}}">
+        <!-- i.url_to_image -->
+        <div class="card-body">
+          <h5 class="card-title">{{i.title}}</h5>
+          <hr>
+          <p class="card-text">{{i.description|truncatechars:200}}.</p>
+          <a href="{{i.url}}" target=" " class="btn btn-outline-warning mt-2">Read More</a>
+          <!-- detail/{{i.id}} -->
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock%}
